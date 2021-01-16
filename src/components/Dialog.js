@@ -1,13 +1,14 @@
 import React from 'react'
 import { Dialog as EDialog } from 'evergreen-ui'
 import { useDialog } from '../hooks'
-import { SignOut, Teams } from '../dialogs'
+import { SignOut, Teams, SendLink } from '../dialogs'
 
 const COMP = props => <div>{props.text}</div>
 
 const dialogs = {
   signOut: SignOut,
-  selectTeam: Teams
+  selectTeam: Teams,
+  SEND_LINK: SendLink,
 }
 
 const dumbComp = () => <div />

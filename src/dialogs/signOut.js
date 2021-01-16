@@ -4,6 +4,7 @@ import {
   Heading, Button
 } from "evergreen-ui";
 import { useAuth } from "../hooks";
+
 const SignOut = (props) => {
   const auth = useAuth();
   console.log(auth)

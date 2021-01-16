@@ -19,7 +19,7 @@ const COLOR_OPTIONS = {
 
 
 const Rocket = () => {
-  const colors = COLOR_OPTIONS.blue
+  const colors = COLOR_OPTIONS.basic
   return (
     <Box className='rocket' cursor="pointer">
       <Box className='rocket-body'>

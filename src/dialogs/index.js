@@ -1,2 +1,3 @@
 export * from './signOut'
-export * from './Teams'
+export * from './teams'
+export * from './sendLink'
