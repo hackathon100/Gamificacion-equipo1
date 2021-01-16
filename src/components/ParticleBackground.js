@@ -9,60 +9,62 @@ export const ParticleBackground = () => (
       left: 0,
       width: '100%',
       height: '100%',
-      backgroundColor: '#0c164f'
+      backgroundColor: '#0c164f',
+      zIndex: -2
     }}
   >
     <Particles
       params={{
         particles: {
           number: {
-            value: 160,
+            value: 10,
             density: {
-              enable: false
-            }
-          },
-          size: {
-            value: 3,
-            random: true,
-            anim: {
-              speed: 4,
-              size_min: 0.3
+              enable: true,
+              value_area: 800
             }
           },
           line_linked: {
             enable: false
           },
-          move: {
-            random: true,
-            speed: 1,
-            direction: 'top',
-            out_mode: 'out'
-          }
-        },
-        interactivity: {
-          events: {
-            onhover: {
-              enable: true,
-              mode: 'bubble'
-            },
-            onclick: {
-              enable: true,
-              mode: 'repulse'
+          opacity: {
+            anim: {
+              enable: false,
             }
           },
-          modes: {
-            bubble: {
-              distance: 250,
-              duration: 2,
-              size: 0,
-              opacity: 0
-            },
-            repulse: {
-              distance: 400,
-              duration: 4
-            }
+          move: {
+            speed: 0.5,
+            out_mode: 'out',
+            direction: 'bottom'
+          },
+          shape: {
+            type: ['image', 'circle'],
+            image: [
+              {
+                src: './images/avatar/rojo.png',
+                height: 20,
+                width: 23
+              },
+              {
+                src: '/images/planets/planet_1.png',
+                height: 20,
+                width: 20
+              },
+              {
+                src: '/images/planets/planet_2.png',
+                height: 20,
+                width: 20
+              }
+            ]
+          },
+          color: {
+            value: '#CCC'
+          },
+          size: {
+            value: 30,
+            random: true
           }
-        }
+        },
+        retina_detect: true
       }}
     />
   </div>

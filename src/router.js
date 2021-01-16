@@ -6,7 +6,7 @@ import {
   Redirect
 } from 'react-router-dom'
 import { MainLayout } from './layouts'
-import { Login, Dashboard } from './pages'
+import { Login, Dashboard, Experiment } from './pages'
 import { ProvideAuth, useAuth, ProvideDialog, ProvideTeam } from './hooks'
 import { Loader, ParticleBackground } from './components'
 
@@ -40,7 +40,8 @@ export default function MainRouter () {
                     <Login />
                   </Route>
                   <PrivateRoute path='/'>
-                    <Dashboard />
+                    {/* <Dashboard /> */}
+                    <Experiment />
                   </PrivateRoute>
                   <Redirect from='*' to='/Login' />
                 </Switch>

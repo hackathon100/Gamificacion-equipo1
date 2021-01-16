@@ -99,7 +99,6 @@ const useProvideAuth = () => {
         setError(error)
       })
   }
-  console.log(player)
   return {
     user,
     player,
