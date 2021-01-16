@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom'
 import firebase from 'firebase/app'
 import 'firebase/firestore'
 import Routes from './router'
+import './styles.css'
 
 const firebaseConfig = {
   apiKey: 'AIzaSyC8se3AfIEB0aAHqGyAWqxey3-tHd8B88k',
@@ -14,6 +15,9 @@ const firebaseConfig = {
   measurementId: 'G-TLKTK1M1V7'
 }
 
-firebase.initializeApp(firebaseConfig)
+const firebaseApp = firebase.initializeApp(firebaseConfig)
 
+const db = firebaseApp.firestore()
+
+export { db }
 ReactDOM.render(<Routes />, document.getElementById('root'))

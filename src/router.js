@@ -1,37 +1,62 @@
-import React from "react";
+import React from 'react'
 import {
   BrowserRouter as Router,
   Switch,
   Route,
-  Redirect,
-} from "react-router-dom";
-import { CleanLayout, MainLayout } from "./layouts";
-import { Login, Dashboard } from "./pages";
-import { ProvideAuth, useAuth } from "./hooks";
-import { Loader } from "./components";
+  Redirect
+} from 'react-router-dom'
+import { MainLayout } from './layouts'
+import { Login, Dashboard } from './pages'
+import { ProvideAuth, useAuth, ProvideDialog, ProvideTeam } from './hooks'
+import { Loader, ParticleBackground } from './components'
 
-export default function MainRouter() {
+export default function MainRouter () {
   return (
-    <ProvideAuth>
-      <Router>
-        <Switch>
-          <Route path="/login">
-            <Login />
-          </Route>
-          <PrivateRoute path="/">
-            <Dashboard />
-          </PrivateRoute>
-          <Redirect from='*' to='/Login' />
-        </Switch>
-      </Router>
-    </ProvideAuth>
-  );
+    <ProvideDialog>
+      <ProvideAuth>
+        <ProvideTeam>
+          <Router>
+            <div
+              style={{
+                position: 'absolute',
+                top: 0,
+                left: 0,
+                width: '100%',
+                height: '100%'
+              }}
+            >
+              <ParticleBackground />
+              <div
+                style={{
+                  position: 'absolute',
+                  top: 0,
+                  left: 0,
+                  width: '100%',
+                  height: '100%'
+                }}
+              >
+                <Switch>
+                  <Route path='/login'>
+                    <Login />
+                  </Route>
+                  <PrivateRoute path='/'>
+                    <Dashboard />
+                  </PrivateRoute>
+                  <Redirect from='*' to='/Login' />
+                </Switch>
+              </div>
+            </div>
+          </Router>
+        </ProvideTeam>
+      </ProvideAuth>
+    </ProvideDialog>
+  )
 }
 
 const PrivateRoute = ({ children, ...rest }) => {
-  const { user, fetchingCacheUser } = useAuth();
+  const { user, fetchingCacheUser } = useAuth()
   if (fetchingCacheUser) {
-    return <Loader />;
+    return <Loader />
   } else {
     return (
       <Route
@@ -42,13 +67,13 @@ const PrivateRoute = ({ children, ...rest }) => {
           ) : (
             <Redirect
               to={{
-                pathname: "/login",
-                state: { from: location },
+                pathname: '/login',
+                state: { from: location }
               }}
             />
           )
         }
       />
-    );
+    )
   }
-};
+}
