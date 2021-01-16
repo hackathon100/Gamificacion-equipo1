@@ -55,6 +55,8 @@ const Task = ({ id, title, status, type, description }) => {
           flexDirection='row'
           justifyContent='space-between'
           key={`completedBy-${coPlayer.uid}`}
+          height={16}
+          margin={2}
         >
           <Box display='flex' flexDirection='row' justifyContent='flex-start'>
             <Heading size={400} marginRight='10px'>
