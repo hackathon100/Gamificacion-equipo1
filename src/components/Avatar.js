@@ -1,32 +1,44 @@
 import React from 'react'
-import { Pane, Avatar as UserAvatar, Text, SelectMenu, Position } from "evergreen-ui";
-import { useAuth, useDialog } from "../hooks";
-import Box from "ui-box";
+import {
+  Pane,
+  Avatar as UserAvatar,
+  SelectMenu,
+  Position,
+  Heading,
+} from 'evergreen-ui'
+import { useAuth, useDialog } from '../hooks'
+import Box from 'ui-box'
 
 const Avatar = () => {
-  const { user } = useAuth();
-  const { openDialog } = useDialog();
+  const { user } = useAuth()
+  const { openDialog } = useDialog()
   const onSingOut = () => {
-    openDialog('signOut');
+    openDialog('signOut')
   }
-  const handleMenuOptions = (item) => {
+  const handleMenuOptions = item => {
     switch (item.value) {
       case 'singout':
-        return onSingOut();
+        return onSingOut()
       default:
-        break;
+        break
     }
   }
   return (
     <Pane display='flex' flexDirection='row'>
-      <Pane flex={1}>
+      <Pane>
         <img
           style={{ height: 400, width: 400 }}
           src='./images/avatar/rojo.png'
           alt='avatar'
         />
       </Pane>
-      <Pane padding={10} width="200px" height={400} backgroundColor='#ccc'>
+      <Pane
+        borderRadius={10}
+        padding={10}
+        width='200px'
+        height={400}
+        backgroundColor='#ccc'
+      >
         <SelectMenu
           position={Position.BOTTOM}
           title='Opciones'
@@ -42,11 +54,16 @@ const Avatar = () => {
             cursor='pointer'
           >
             <UserAvatar src={user.photoURL} name={user.displayName} size={40} />
-            <Text marginLeft={10} size={300}>
+            <Heading size={200} marginLeft={10}>
               {user.displayName}
-            </Text>
+            </Heading>
           </Box>
         </SelectMenu>
+        <Pane>
+          <Heading size={600} marginTop='default'>
+            Habilidades
+          </Heading>
+        </Pane>
       </Pane>
     </Pane>
   )
