@@ -9,7 +9,8 @@ export const ParticleBackground = () => (
       left: 0,
       width: '100%',
       height: '100%',
-      backgroundColor: '#0c164f'
+      backgroundColor: '#0c164f',
+      zIndex: -2
     }}
   >
     <Particles

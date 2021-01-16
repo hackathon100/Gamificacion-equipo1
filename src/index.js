@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom'
 import firebase from 'firebase/app'
 import 'firebase/firestore'
 import Routes from './router'
-import './styles.css'
+import './styles.scss'
 
 const firebaseConfig = {
   apiKey: 'AIzaSyC8se3AfIEB0aAHqGyAWqxey3-tHd8B88k',
