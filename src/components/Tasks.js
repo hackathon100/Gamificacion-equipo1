@@ -1,12 +1,11 @@
 import React from 'react'
-import { Heading, Pane, Badge, Paragraph } from 'evergreen-ui'
+import { Heading, Pane, Button } from 'evergreen-ui'
 import Box from 'ui-box'
 import { Task } from './'
 import { useTasks } from '../hooks'
 
 const Tasks = () => {
   const { tasks = [] } = useTasks()
-  console.log(tasks)
   return (
     <Pane
       position='absolute'
@@ -18,21 +17,27 @@ const Tasks = () => {
       borderRadius={10}
       padding={10}
     >
-      <Heading size={800}>Tareas disponibles</Heading>
+      <Heading size={800}>Tareas disponibles ({tasks.length})</Heading>
       <Box
         width='90%'
         alignSelf='center'
         margin={10}
         borderBottom='lightgrey 2px solid'
       />
-      <Box display='flex' flexDirection='column'>
+      <Box display='flex' flexDirection='column' overflow='auto' height={300}>
         {tasks.map(task => (
           <Task
+            id={task.id}
             key={task.id}
             title={task.title}
             description={task.description}
           />
         ))}
+      </Box>
+      <Box display='flex' bottom={10} justifyContent='center'>
+        <Button appearance='primary' intent='success'>
+          Enviar
+        </Button>
       </Box>
     </Pane>
   )

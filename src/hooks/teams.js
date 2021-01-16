@@ -9,7 +9,6 @@ const TeamContext = createContext()
 const useProvideTeam = () => {
   const [loading, setLoading] = useState(false)
   const [team, setTeam] = useState(null)
-  const [error, setError] = useState(null)
   const { openDialog, closeDialog } = useDialog()
   const { player, user } = useAuth()
   const [teams, setTeams] = useState([])
@@ -86,7 +85,7 @@ const useProvideTeam = () => {
     getTeams,
     loading,
     saveTeamSelected,
-    updateTasks
+    updateTasks,
   }
 }
 
