@@ -1,7 +1,10 @@
 import React, { createContext, useContext, useState, useEffect } from 'react'
-import 'firebase/auth'
 import { db } from '../index'
 import { useDialog, useAuth } from './'
+import 'firebase/firestore'
+import firebase from 'firebase/app'
+
+
 
 const TeamContext = createContext()
 
@@ -31,17 +34,32 @@ const useProvideTeam = () => {
     const teamsCollection = await db.collection('teams').get()
     const teams = await Promise.all(
       teamsCollection.docs.map(async doc => {
-        return { ...doc.data() }
+        return { ...doc.data(), id: doc.id }
       })
     )
     setTeams(teams)
+  }
+
+  const saveTeamSelected = async teamSelected => {
+    await db
+      .collection('players')
+      .doc(user.uid)
+      .update({ teamId: teamSelected })
+    await db
+      .collection('teams')
+      .doc(teamSelected)
+      .update({
+        players: firebase.firestore.FieldValue.arrayUnion(db.collection('players').doc(user.uid))
+      })
+    closeDialog()
   }
 
   return {
     team,
     teams,
     getTeams,
-    loading
+    loading,
+    saveTeamSelected
   }
 }
 
