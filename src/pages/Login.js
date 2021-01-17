@@ -1,7 +1,7 @@
 import React from 'react'
 import { Pane, Button, Heading } from 'evergreen-ui'
 import { CleanLayout } from '../layouts'
-import { useAuth } from '../hooks'
+import { useAuth, useDialog } from '../hooks'
 import { useHistory } from 'react-router-dom'
 
 const Login = () => {
@@ -10,9 +10,9 @@ const Login = () => {
   if (auth.user) {
     history.push('/')
   }
-
+  const { openDialog } = useDialog()
   const onTeacherLogin = () => {
-
+    openDialog('TEACH_LOGIN')
   }
 
   return (
@@ -33,14 +33,14 @@ const Login = () => {
             isLoading={auth.loading}
             onClick={auth.signin}
             appearance='primary'
-            intent="success"
+            intent='success'
             marginRight={10}
           >
-           Estudiantes
+            Estudiantes
           </Button>
           <Button
             isLoading={auth.loading}
-            onClick={auth.onTeacherLogin}
+            onClick={onTeacherLogin}
             appearance='primary'
           >
             Profesores

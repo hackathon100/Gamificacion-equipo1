@@ -6,9 +6,9 @@ import {
   Redirect
 } from 'react-router-dom'
 import { MainLayout } from './layouts'
-import { Login, Dashboard, Experiment } from './pages'
+import { Login, Teacher, Experiment } from './pages'
 import { ProvideAuth, useAuth, ProvideDialog, ProvideTeam } from './hooks'
-import { Loader, ParticleBackground } from './components'
+import { Loader, ParticleBackground, Dialog } from './components'
 
 export default function MainRouter () {
   return (
@@ -25,6 +25,7 @@ export default function MainRouter () {
                 height: '100%'
               }}
             >
+              <Dialog />
               <ParticleBackground />
               <div
                 style={{
@@ -39,6 +40,9 @@ export default function MainRouter () {
                   <Route path='/login'>
                     <Login />
                   </Route>
+                  <PrivateRoute path='/teacher'>
+                    <Teacher />
+                  </PrivateRoute>
                   <PrivateRoute path='/'>
                     {/* <Dashboard /> */}
                     <Experiment />

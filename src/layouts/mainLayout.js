@@ -1,6 +1,5 @@
 import { Pane } from 'evergreen-ui'
 import React from 'react'
-import { Dialog } from '../components'
 
 const MainLayout = ({ children }) => {
   return (
@@ -11,7 +10,6 @@ const MainLayout = ({ children }) => {
       border='default'
       flexDirection='column'
     >
-      <Dialog />
       {children}
     </Pane>
   )

@@ -1,3 +1,5 @@
 export * from './signOut'
 export * from './teams'
 export * from './sendLink'
+export * from './teacherLogin'
+export * from './buy'

@@ -28,7 +28,7 @@ const Crew = () => {
         borderBottom='lightgrey 2px solid'
       />
       <Box display='flex' flexDirection='column'>
-        <Avatar />
+        {/* <Avatar /> */}
         {players.map(player => (
           <PlayerAvatar
             key={player.uid}

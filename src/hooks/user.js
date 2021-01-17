@@ -21,7 +21,8 @@ const useProvideAuth = () => {
         setUser({
           displayName: user.displayName,
           photoURL: user.photoURL,
-          uid: user.uid
+          uid: user.uid,
+          teacher: localStorage.getItem('teacher') || false
         })
       }
       setFetchingCacheUser(false)
@@ -34,7 +35,7 @@ const useProvideAuth = () => {
       const playerCollection = db.collection('players').doc(user.uid)
       playerConextion = playerCollection.onSnapshot(player => {
         if (player.data()) {
-          setPlayer({ ...player.data() })
+          setPlayer({ ...player.data(), uid: player.id })
         } else {
           playerCollection
             .set({
@@ -68,26 +69,27 @@ const useProvideAuth = () => {
         shouldCloseOnEscapePressbool: false
       })
     }
-  }, [player])
+  }, [player]);
 
-  const signin = async () => {
+  const signin = async ({ teacher = false }) => {
     try {
       setLoading(true)
       const result = await firebase.auth().signInWithPopup(googleProvider)
       setUser({
         displayName: result.user.displayName,
         photoURL: result.user.photoURL,
-        uid: result.user.uid
+        uid: result.user.uid,
+        teacher
       })
+      localStorage.setItem('teacher', teacher)
       setLoading(false)
-      history.push('/')
+      history.push(teacher ? '/teacher' : '/')
     } catch (error) {
       setError(error)
       setLoading(false)
     }
   }
   const signout = () => {
-    console.log('singing out')
     firebase
       .auth()
       .signOut()
