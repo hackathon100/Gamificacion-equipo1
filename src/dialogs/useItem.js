@@ -14,8 +14,8 @@ const UseItem = (props) => {
     <Box>
       <Heading size={100} marginTop="default">Seguro que quieres usar este item?</Heading>
       <Box margin={10} display="flex" flex={1} flexDirection='row' justifyContent='space-between' >
-        <Button appearance="primary" onClick={props.closeDialog}>No</Button>
-        <Button intent="warning" onClick={onClick}>Si</Button>
+        <Button appearance="warning" onClick={props.closeDialog}>No</Button>
+        <Button intent="primary" onClick={onClick}>Si</Button>
       </Box>
     </Box >
   )

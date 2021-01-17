@@ -131,7 +131,7 @@ const Inventory = () => {
       right={10}
       bottom={10}
       width={350}
-      height={400}
+      height={250}
       backgroundColor='darkgray'
       borderRadius={10}
       padding={10}
