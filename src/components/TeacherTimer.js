@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react'
 import Box from 'ui-box'
 import { db } from '../index'
-import { Heading } from 'evergreen-ui'
+import { Heading, Button } from 'evergreen-ui'
+import firebase from 'firebase/app'
 import 'firebase/firestore'
 
-const Timer = () => {
+const TeacherTimer = () => {
   const [timeLeft, setTimeLeft] = useState()
   const [expirationDate, setExpirationDate] = useState()
   const [pause, setPause] = useState(true)
@@ -28,7 +29,7 @@ const Timer = () => {
         }
       }, 1000)
     }
-    return () => clearInterval(interval);
+    return () => clearInterval(interval)
   }, [expirationDate, pause])
 
   useEffect(() => {
@@ -46,23 +47,31 @@ const Timer = () => {
     }
   }, [])
 
+  const handlePlayPause = async () => {
+    await db
+      .collection('params')
+      .doc('class_timer')
+      .update({
+        active: !pause
+      })
+  }
+
   return (
     <Box
-      position='absolute'
-      margin='auto'
-      left={0}
-      right={0}
-      top={10}
-      width={150}
-      height={35}
-      backgroundColor='black'
       display='flex'
-      justifyContent='center'
-      borderRadius={50}
+      width='350px'
+      flexDirection='row'
+      flex={1}
+      alignItems='center'
+      justifyContent='space-around'
     >
-      <Heading size={800}>{timeLeft}</Heading>
+      <Heading size='500' color='white'>
+        {timeLeft}
+      </Heading>
+      <Button onClick={handlePlayPause}>{pause ? 'Comenzar' : 'Pausar'}</Button>
+      <Button>Editar</Button>
     </Box>
   )
 }
 
-export { Timer }
+export { TeacherTimer }

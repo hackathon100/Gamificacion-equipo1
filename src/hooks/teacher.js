@@ -2,12 +2,14 @@ import React, { useState, useEffect } from 'react'
 import { db } from '../index'
 import 'firebase/firestore'
 import firebase from 'firebase/app'
-import { useAuth } from './'
 
 const useTeacher = () => {
   const [tasks, setTasks] = useState([])
   const [teams, setTeams] = useState([])
-  const { user } = useAuth()
+  const [params, setParams] = useState({
+    CURRENT_ACTIVITY: { name: 'Conociendo el motor' },
+    class_timer: { expirationDate: new Date() }
+  })
   useEffect(() => {
     const tasksCollection = db.collection('tasks')
     const tasksConextion = tasksCollection.onSnapshot(async tasks => {
@@ -21,6 +23,20 @@ const useTeacher = () => {
     return () => {
       tasksConextion()
     }
+  }, [])
+
+  useEffect(() => {
+    const paramsCollection = db
+      .collection('params')
+      .onSnapshot(async dbparams => {
+        let data = {}
+        await Promise.all(
+          dbparams.docs.map(async param => {
+            data[param.id] = param.data()
+          })
+        )
+        setParams(data)
+      })
   }, [])
 
   useEffect(() => {
@@ -50,6 +66,7 @@ const useTeacher = () => {
   }
 
   return {
+    params,
     tasks,
     teams,
     addPoints

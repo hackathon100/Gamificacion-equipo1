@@ -3,6 +3,7 @@ import { Heading, Pane } from 'evergreen-ui'
 import { useAuth, useStore, useDialog } from '../hooks'
 import { get } from 'lodash'
 import Box from 'ui-box'
+import { db } from '../index'
 
 export const COLORS = {
   COLOR_BASE: {
@@ -97,11 +98,20 @@ const items = item => {
 }
 
 const RenderItem = ({ count, id }) => {
-  const { getItem, useNewColor } = useStore()
+  const { getItem } = useStore()
   const item = getItem(id)
-  const { openDialog } = useDialog()
+  const { openDialog } = useDialog();
+  const { player } = useAuth();
+  const useNewColor = async () => {
+    return await db
+      .collection('teams')
+      .doc(player.teamId)
+      .update({
+        [`spaceship.color`]: item.code
+      })
+  }
   const onClick = () => {
-    openDialog('USE_ITEM', { onClick: () => useNewColor(item.code) })
+    openDialog('USE_ITEM', { onClick: useNewColor })
   }
   return item ? (
     <Box marginBottom='10px' cursor='pointer' onClick={onClick}>

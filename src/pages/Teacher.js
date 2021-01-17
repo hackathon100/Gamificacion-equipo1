@@ -3,7 +3,7 @@ import Box from 'ui-box'
 import { useTeacher } from '../hooks'
 import { Heading, Paragraph, Badge, Button } from 'evergreen-ui'
 import { get } from 'lodash'
-import { TaskByTeam } from '../components'
+import { TaskByTeam, TeacherTimer } from '../components'
 
 const TeacherTask = task => {
   return (
@@ -37,12 +37,12 @@ const TeacherTask = task => {
 }
 
 const Teacher = () => {
-  const { tasks } = useTeacher()
+  const { tasks, params } = useTeacher()
   return (
     <Box display='flex' flexDirection='row'>
       <Box
         display='flex'
-        width='470px'
+        width='550px'
         flexDirection='column'
         height='600px'
         overflow='auto'
@@ -53,7 +53,26 @@ const Teacher = () => {
           justifyContent='space-between'
           padding={10}
         >
-          <Heading size='800' color='white'>
+          <Heading size='600' color='white'>
+            Actividad actual: {get(params, 'CURRENT_ACTIVITY.name')}
+          </Heading>
+          <Button appearance='primary'>Nueva Actividad</Button>
+        </Box>
+        <Box
+          display='flex'
+          flexDirection='row'
+          justifyContent='space-between'
+          padding={10}
+        >
+          <TeacherTimer />
+        </Box>
+        <Box
+          display='flex'
+          flexDirection='row'
+          justifyContent='space-between'
+          padding={10}
+        >
+          <Heading size='500' color='white'>
             Tareas
           </Heading>
           <Button appearance='primary'>Nueva Tarea</Button>
