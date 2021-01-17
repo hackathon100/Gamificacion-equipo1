@@ -20,7 +20,7 @@ export const ParticleBackground = () => (
             value: 10,
             density: {
               enable: true,
-              value_area: 800
+              value_area: 500
             }
           },
           line_linked: {
@@ -28,7 +28,7 @@ export const ParticleBackground = () => (
           },
           opacity: {
             anim: {
-              enable: false,
+              enable: false
             }
           },
           move: {
@@ -37,13 +37,8 @@ export const ParticleBackground = () => (
             direction: 'bottom'
           },
           shape: {
-            type: ['image', 'circle'],
+            type: ['image'],
             image: [
-              {
-                src: './images/avatar/rojo.png',
-                height: 20,
-                width: 23
-              },
               {
                 src: '/images/planets/planet_1.png',
                 height: 20,
@@ -51,6 +46,36 @@ export const ParticleBackground = () => (
               },
               {
                 src: '/images/planets/planet_2.png',
+                height: 20,
+                width: 20
+              },
+              {
+                src: '/images/planets/planet_3.png',
+                height: 20,
+                width: 20
+              },
+              {
+                src: '/images/planets/planet_4.png',
+                height: 20,
+                width: 20
+              },
+              {
+                src: '/images/planets/planet_5.png',
+                height: 20,
+                width: 20
+              },
+              {
+                src: '/images/planets/planet_6.png',
+                height: 20,
+                width: 20
+              },
+              {
+                src: '/images/planets/planet_7.png',
+                height: 20,
+                width: 20
+              },
+              {
+                src: '/images/planets/planet_8.png',
                 height: 20,
                 width: 20
               }
