@@ -49,33 +49,17 @@ const useTasks = () => {
     }
   }
 
-
-  // useEffect(() => {
-  //   let teamConextion = () => {}
-  //   if (player) {
-  //     teamCollection.collection('tasks').onSnapshot(querySnapshot => {
-  //       let list = []
-  //       querySnapshot.forEach(async doc => {
-  //         const completedBy = await Promise.all(
-  //           doc.data().completedBy.map(data => {
-  //             return data
-  //               .get()
-  //               .then(player => ({ ...player.data(), uid: player.id }))
-  //           })
-  //         )
-  //         list.push({ completedBy, id: doc.id })
-  //       })
-  //       console.log('list', list)
-  //       setTaskList(list)
-  //     })
-  //   }
-  //   return () => {
-  //     teamConextion()
-  //   }
-  // }, [player])
+  const updateLink = async link => {
+    let links = {}
+    links.[user.uid] = link;
+    await db.collection('teams')
+      .doc(player.teamId)
+      .update({[`links.${user.uid}`]: link})
+  }
 
   return {
     tasks,
+    updateLink,
     updateTask
   }
 }

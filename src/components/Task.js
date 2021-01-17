@@ -18,19 +18,21 @@ const Task = ({ id, title, status, type, description }) => {
   }
 
   useEffect(() => {
-    const teamCollection = db
-      .collection('teams')
-      .doc(player.teamId)
-      .collection('tasks')
-      .doc(id)
-      .onSnapshot(async task => {
-        if (task.data()) {
-          const ids = await Promise.all(
-            task.data().completedBy.map(player => player.id)
-          )
-          setCompletedBy(ids)
-        }
-      })
+    let teamCollection = () => {}
+    if (player)
+      teamCollection = db
+        .collection('teams')
+        .doc(player.teamId)
+        .collection('tasks')
+        .doc(id)
+        .onSnapshot(async task => {
+          if (task.data()) {
+            const ids = await Promise.all(
+              task.data().completedBy.map(player => player.id)
+            )
+            setCompletedBy(ids)
+          }
+        })
     return () => {
       teamCollection()
     }

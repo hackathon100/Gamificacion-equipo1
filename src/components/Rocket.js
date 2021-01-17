@@ -1,27 +1,15 @@
 import React from 'react'
 import Box from 'ui-box'
-
-
-const COLOR_OPTIONS = {
-  basic : {
-    fin: "#a75248",
-    body: "#dadada",
-    window: "#a75248",
-    borders: "#554842"
-  },
-  blue : {
-    fin: "blue",
-    body: "lightblue",
-    window: "blue",
-    borders: "#554842"
-  }
-}
-
+import { COLORS } from './'
+import { useTeam } from '../hooks'
+import { get } from 'lodash'
 
 const Rocket = () => {
-  const colors = COLOR_OPTIONS.blue
+  const { team } = useTeam()
+  const teamColor = get(team, 'spaceship.color')
+  const colors = get(COLORS, `${teamColor}.details`) || COLORS['COLOR_BASE'].details
   return (
-    <Box className='rocket' cursor="pointer">
+    <Box className='rocket' cursor='pointer'>
       <Box className='rocket-body'>
         <Box
           backgroundColor={colors.body}
@@ -32,7 +20,13 @@ const Rocket = () => {
         />
         <Box className='fin fin-left' backgroundColor={colors.fin} />
         <Box className='fin fin-right' backgroundColor={colors.fin} />
-        <Box className='window' backgroundColor={colors.window} borderWidth="5px" borderStyle="solid" borderColor={colors.borders}/>
+        <Box
+          className='window'
+          backgroundColor={colors.window}
+          borderWidth='5px'
+          borderStyle='solid'
+          borderColor={colors.borders}
+        />
       </Box>
       <Box className='exhaust-flame' />
       <Box is='ul' className='exhaust-fumes'>

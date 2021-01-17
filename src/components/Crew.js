@@ -1,12 +1,12 @@
 import React from 'react'
 import { Heading, Pane } from 'evergreen-ui'
 import { useTeam } from '../hooks'
-import { PlayerAvatar } from './'
+import { PlayerAvatar, Avatar } from './'
 import { get } from 'lodash'
 
 import Box from 'ui-box'
 const Crew = () => {
-  const { team } = useTeam();
+  const { team } = useTeam()
   const players = get(team, 'players') || []
   return (
     <Pane
@@ -28,6 +28,7 @@ const Crew = () => {
         borderBottom='lightgrey 2px solid'
       />
       <Box display='flex' flexDirection='column'>
+        {/* <Avatar /> */}
         {players.map(player => (
           <PlayerAvatar
             key={player.uid}

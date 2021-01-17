@@ -1,13 +1,15 @@
 import React from 'react'
 import { Dialog as EDialog } from 'evergreen-ui'
 import { useDialog } from '../hooks'
-import { SignOut, Teams } from '../dialogs'
-
-const COMP = props => <div>{props.text}</div>
+import { SignOut, Teams, SendLink, TeacherLogin, Buy, UseItem } from '../dialogs'
 
 const dialogs = {
   signOut: SignOut,
-  selectTeam: Teams
+  selectTeam: Teams,
+  SEND_LINK: SendLink,
+  TEACH_LOGIN: TeacherLogin,
+  BUY: Buy,
+  USE_ITEM: UseItem
 }
 
 const dumbComp = () => <div />
@@ -15,7 +17,6 @@ const dumbComp = () => <div />
 const Dialog = () => {
   const { isOpen, closeDialog, props, current } = useDialog()
   const OpenDialog = dialogs[current] || dumbComp
-  console.log('props', props)
   return (
     <EDialog
       onCancel={closeDialog}
