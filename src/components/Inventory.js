@@ -4,22 +4,46 @@ import { useAuth, useStore, useDialog } from '../hooks'
 import { get } from 'lodash'
 import Box from 'ui-box'
 
-const COLORS = {
+export const COLORS = {
   COLOR_BASE: {
     name: 'Color Rojo',
-    color: 'red'
+    color: 'red',
+    details: {
+      fin: '#a75248',
+      body: '#dadada',
+      window: '#a75248',
+      borders: '#554842'
+    }
   },
   COLOR_BASE_1: {
     name: 'Color Verde',
-    color: 'green'
+    color: 'green',
+    details: {
+      fin: 'green',
+      body: '#dadada',
+      window: 'lighgreen',
+      borders: '#554842'
+    }
   },
   COLOR_BASE_2: {
     name: 'Color Azul',
-    color: 'blue'
+    color: 'blue',
+    details: {
+      fin: 'blue',
+      body: 'lightgray',
+      window: 'lightblue',
+      borders: '#554842'
+    }
   },
   COLOR_BASE_3: {
     name: 'Color Negro',
-    color: 'black'
+    color: 'black',
+    details: {
+      fin: 'black',
+      body: '#dadada',
+      window: '#a75248',
+      borders: '#554842'
+    }
   }
 }
 
@@ -73,16 +97,14 @@ const items = item => {
 }
 
 const RenderItem = ({ count, id }) => {
-  const { getItem } = useStore()
+  const { getItem, useNewColor } = useStore()
   const item = getItem(id)
-  // const { openDialog } = useDialog()
-  // const { buy } = useStore()
-  // const onClick = () => buy({item})
-  // const onBuy = () => {
-  //   openDialog('BUY', { onClick })
-  // }
+  const { openDialog } = useDialog()
+  const onClick = () => {
+    openDialog('USE_ITEM', { onClick: () => useNewColor(item.code) })
+  }
   return item ? (
-    <Box marginBottom='10px' cursor='pointer' onClick={() => {}}>
+    <Box marginBottom='10px' cursor='pointer' onClick={onClick}>
       {items(item)}{' '}
       <Heading size={400}>{get(COLORS, `${[item.code]}.name`)}</Heading>
       <Heading size={200}>{`${count} unidades`}</Heading>

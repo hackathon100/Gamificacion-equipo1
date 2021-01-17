@@ -22,6 +22,16 @@ const useStore = () => {
     fetchStore()
   }, [player])
 
+
+  const useNewColor = async code => {
+    await db
+      .collection('teams')
+      .doc(player.teamId)
+      .update({
+        [`spaceship.color`]: code
+      })
+  }
+
   const addPoints = async (points, player) => {
     await db
       .collection('players')
@@ -54,6 +64,7 @@ const useStore = () => {
 
   return {
     storeData,
+    useNewColor,
     buy,
     addPoints,
     getItem

@@ -1,14 +1,15 @@
 import React from 'react'
 import { Dialog as EDialog } from 'evergreen-ui'
 import { useDialog } from '../hooks'
-import { SignOut, Teams, SendLink, TeacherLogin, Buy } from '../dialogs'
+import { SignOut, Teams, SendLink, TeacherLogin, Buy, UseItem } from '../dialogs'
 
 const dialogs = {
   signOut: SignOut,
   selectTeam: Teams,
   SEND_LINK: SendLink,
   TEACH_LOGIN: TeacherLogin,
-  BUY: Buy
+  BUY: Buy,
+  USE_ITEM: UseItem
 }
 
 const dumbComp = () => <div />
