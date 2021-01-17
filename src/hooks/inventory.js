@@ -22,9 +22,8 @@ const useStore = () => {
     fetchStore()
   }, [player])
 
-
   const useNewColor = async code => {
-    await db
+    return await db
       .collection('teams')
       .doc(player.teamId)
       .update({

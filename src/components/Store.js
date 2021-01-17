@@ -74,10 +74,11 @@ const items = item => {
 
 const RenderItem = ({ item }) => {
   const { openDialog } = useDialog()
+  const { player } = useAuth()
   const { buy } = useStore()
-  const onClick = () => buy({item})
+  const onClick = () => buy({ item })
   const onBuy = () => {
-    openDialog('BUY', { onClick })
+    get(player, 'points') && openDialog('BUY', { onClick })
   }
   return (
     <Box marginBottom='10px' cursor='pointer' onClick={onBuy}>

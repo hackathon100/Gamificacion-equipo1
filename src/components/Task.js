@@ -46,7 +46,7 @@ const Task = ({ id, title, status, type, description }) => {
   return (
     <Box display='flex' flexDirection='column' margin={5}>
       <Box display='flex' flexDirection='row' justifyContent='space-between'>
-        <Heading size={500} color='white'>
+        <Heading size='500' color='white'>
           {title}
         </Heading>
       </Box>
@@ -61,7 +61,7 @@ const Task = ({ id, title, status, type, description }) => {
           margin={2}
         >
           <Box display='flex' flexDirection='row' justifyContent='flex-start'>
-            <Heading size={400} marginRight='10px'>
+            <Heading size='400' marginRight='10px'>
               {coPlayer.displayName}
             </Heading>
             <Badge

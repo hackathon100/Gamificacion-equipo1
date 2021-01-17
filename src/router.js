@@ -58,8 +58,27 @@ export default function MainRouter () {
   )
 }
 
-const PrivateRoute = ({ children, ...rest }) => {
+const PrivateRoute = ({ children, path, ...rest }) => {
   const { user, fetchingCacheUser } = useAuth()
+  if (path === 'teacher') {
+    return (
+      <Route
+        {...rest}
+        render={({ location }) =>
+          user ? (
+            <MainLayout>{children}</MainLayout>
+          ) : (
+            <Redirect
+              to={{
+                pathname: '/',
+                state: { from: location }
+              }}
+            />
+          )
+        }
+      />
+    )
+  }
   if (fetchingCacheUser) {
     return <Loader />
   } else {
